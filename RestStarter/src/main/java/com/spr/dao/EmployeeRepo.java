@@ -1,13 +1,12 @@
 package com.spr.dao;
 
-import java.util.ArrayList;
-import com.spr.model.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-public class EmployeeRepo {
-	
-	ArrayList<Employee> empList=new ArrayList<Employee>();
-	Employee emp1=new Employee();
-	public ArrayList<Employee> getAllEmployee(){
-		return empList;
-	}
+import com.spr.model.Employee;
+@Component
+@Repository
+public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
+
 }
