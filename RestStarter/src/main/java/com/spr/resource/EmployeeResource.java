@@ -1,6 +1,7 @@
 package com.spr.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,4 +57,23 @@ public class EmployeeResource {
 		logger.debug("Employee Found:"+emp.getEmpName());
 		return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
+	
+	@GetMapping(path="/pattern/{pattern}")
+	public ResponseEntity<List<Employee>> getEmpByPattern(@PathVariable("pattern") String pattern){
+		logger.info("getEmpByPattern() Called.");
+		List<Employee> empList;
+		empList=employeeRepo.findAll()
+				.stream()
+				.filter(x->x.getEmpName().contains(pattern))
+				.collect(Collectors.<Employee>toList());
+		
+		if (empList == null) {
+			logger.debug("Employee Not Found");
+			return new ResponseEntity<>(empList, HttpStatus.NO_CONTENT);
+		}
+		logger.debug(empList.size()+" Employee(s) Found with pattern:"+pattern);
+		return new ResponseEntity<>(empList, HttpStatus.OK);
+		
+	}
+	
 }
