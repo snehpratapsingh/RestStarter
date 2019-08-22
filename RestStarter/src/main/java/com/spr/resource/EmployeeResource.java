@@ -27,7 +27,6 @@ public class EmployeeResource {
 	EmployeeRepo employeeRepo;
 	
 	Logger logger = LoggerFactory.getLogger(EmployeeResource.class);
-	//Logger logger1;
 
 	@GetMapping(path = "/")
 	public ResponseEntity<List<Employee>> getEmpolyeeList() {

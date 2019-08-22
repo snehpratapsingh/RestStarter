@@ -20,6 +20,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         .authorizeRequests().anyRequest().authenticated()
         .and()
         .httpBasic();
+		
+		http.headers().frameOptions().sameOrigin();
 	}
 	 @Autowired
 	    public void configureGlobal(AuthenticationManagerBuilder auth)
